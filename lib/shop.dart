@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-class Shop extends StatelessWidget {
+class Shop extends StatefulWidget {
   const Shop({Key? key, required this.title}) : super(key: key);
 
   final String title;
+
+  @override
+  _ShopState createState() => _ShopState();
+}
+
+class _ShopState extends State<Shop> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 6), () {
+      speakSentence(
+          'Great! Heres what i found for you that match what you just described! The first dress is an orange floral knee length dress with a frilly skirt. If you want more details about this tap on the top right corner of the screen. or if you want to hear about the next dress, tap on the bottom right corner of the screen.');
+    });
+  }
 
   Future<void> speakSentence(String sentence) async {
     FlutterTts flutterTts = FlutterTts();
@@ -30,7 +44,8 @@ class Shop extends StatelessWidget {
         children: <Widget>[
           ElevatedButton(
             onPressed: () {
-              speakSentence('Button 1 pressed');
+              speakSentence(
+                  'Sure, let me repeat what i just said. Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about the item. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
@@ -42,11 +57,12 @@ class Shop extends StatelessWidget {
               minimumSize: Size(double.infinity,
                   buttonHeight), // Set minimum size to fill height
             ),
-            child: const Text('Button 1'),
+            child: const Text(''),
           ),
           ElevatedButton(
             onPressed: () {
-              speakSentence('Button 2 pressed');
+              speakSentence(
+                  'Excellent choice! Let me describe this dress for you. Imagine slipping into a dress thats a tactile celebration of summer: soft fabric adorned with playful frills and a lively floral pattern, all in a radiant orange hue. Its like wearing sunshine itself, with every touch revealing its vibrant warmth. This delightful creation hugs your curves gently, with frills and ruffles adding a delightful sensation to each movement. The intricate floral pattern, though unseen, can be felt like delicate petals against your skin. With this dress, youll embody the essence of summer, exuding energy and vitality wherever you go. Whether for a leisurely stroll or a gathering with friends, youll feel both stylish and comfortable, inviting admiration with every step.');
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
@@ -58,11 +74,11 @@ class Shop extends StatelessWidget {
               minimumSize:
                   Size(double.infinity, buttonHeight), // Set button color
             ),
-            child: const Text('Button 2'),
+            child: const Text(''),
           ),
           ElevatedButton(
             onPressed: () {
-              speakSentence('Button 3 pressed');
+              speakSentence('Sure, you can re-describe what you wish for.');
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
@@ -75,11 +91,12 @@ class Shop extends StatelessWidget {
                   buttonHeight), // Set minimum size to fill height
               // Set button color
             ),
-            child: const Text('Button 3'),
+            child: const Text(''),
           ),
           ElevatedButton(
             onPressed: () {
-              speakSentence('Button 4 pressed');
+              speakSentence(
+                  'The next dress i found for you is a comfortable casual dress with a smoked bust to make you look smart.');
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
@@ -91,7 +108,7 @@ class Shop extends StatelessWidget {
               minimumSize: Size(double.infinity,
                   buttonHeight), // Set minimum size to fill height
             ),
-            child: const Text('Button 4'),
+            child: const Text(''),
           ),
         ],
       ),
