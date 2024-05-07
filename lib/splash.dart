@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Delay navigation to register.dart for 5 seconds
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const RegisterScreen()),
@@ -32,29 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
           children: <Widget>[
             // Your logo or image goes here
             Image.asset(
-              'assets/logo.png', // Replace 'logo.png' with your logo file
-              width: 200,
-              height: 200,
+              'images/logo.png', // Replace 'logo.png' with your logo file
+              width: 250,
+              height: 250,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             const CircularProgressIndicator(), // Loading indicator
-            const SizedBox(height: 20),
-            MaterialButton(
-              onPressed: () {
-                // Navigate to register.dart immediately when the button is pressed
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
-                );
-              },
-              color: Colors.pink,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(0), // Adjust the radius as needed
-              ),
-              child: const Text('Continue', style: TextStyle(color: Colors.white)),
-            ),
           ],
         ),
       ),
