@@ -11,17 +11,23 @@ class RegisterScreen extends StatefulWidget {
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen>
+    with SingleTickerProviderStateMixin {
   FlutterTts flutterTts = FlutterTts();
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   late Timer _timer;
+  late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     speakSentence(
-        'Welcome to shopsense! My name is shopzee and I am here to assist you choose the clothing items you desire. To get started, let\'s first get to know each other. What\'s your name? Once you say your name, to continue to the store, please tap on the top half of your screen, or if you want to redo, please tap on the bottom half of the screen.');
+        'Helooo Jane! congratulations on successfully setting up your shopsense profile, and welcome to the shopsense store! Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about purchasing and all. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10), // Adjust the duration as needed
+    )..repeat();
   }
 
   Future<void> speakSentence(String sentence) async {
@@ -58,6 +64,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _isListening = false;
     });
     _speech.stop();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -115,30 +127,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.volume_up, color: Colors.white),
-                  const SizedBox(width: 10),
-                  Text('Voice Output', style: TextStyle(color: Colors.white)),
-                  const SizedBox(width: 20),
-                  IconButton(
-                    icon: Icon(Icons.mic),
-                    color: Colors.white,
-                    onPressed: () {
-                      startListening();
-                    },
-                  ),
-                ],
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.rotate(
+                angle: _controller.value * 2 * 3.1415,
+                child: child,
+              );
+            },
+            child: Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                'images/shopz.png',
+                width: MediaQuery.of(context).size.width / 3,
               ),
             ),
           ),
