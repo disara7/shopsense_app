@@ -20,12 +20,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void initState() {
     super.initState();
     speakSentence(
-        'Welcome to shopsense! My name is shopzee and I am here to assist you choose the clothing items you desire. To get started, let\'s first get to know each other. What\'s your name?');
+        'Welcome to shopsense! My name is shopzee and I am here to assist you choose the clothing items you desire. To get started, let\'s first get to know each other. What\'s your name? Once you say your name, to continue, please tap on the top half of your screen, or if you want to redo, please tap on the bottom half of the screen.');
   }
 
   Future<void> speakSentence(String sentence) async {
     await flutterTts.setLanguage('en-US');
-    await flutterTts.setSpeechRate(0.9);
+    await flutterTts.setSpeechRate(1.0);
     await flutterTts.setVolume(1.0);
     await flutterTts.setPitch(2.0);
     await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
@@ -59,13 +59,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _speech.stop();
   }
 
-  void speakAnotherSentence() async {
-    // Speak another sentence after the listening part
-    await Future.delayed(
-        Duration(seconds: 1)); // Delay for 1 second before speaking
-    speakSentence("Thank you for providing your name.");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +70,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      speakSentence(
+                          'Hello, Jane. Could you please tell me your phone number to set up the profile? Once you finish saying your phone number, please tap on the top half of the screen to continue, or if you want to redo, please tap on the bottom half of the screen.');
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(20.0),
                       backgroundColor: Colors.pink[100],
@@ -87,12 +83,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       minimumSize: const Size(
                           double.infinity, 0), // Set minimum size to fill width
                     ),
-                    child: const Text('Button 1'),
+                    child: const Text(''),
                   ),
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      speakSentence(
+                          "Of course, you can say it again. Please tap on the top half of the screen if you are sure you want to continue, or you can always reanswer by tapping on the bottom half of the screen.");
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(20.0),
                       backgroundColor: Colors.white,
@@ -102,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       minimumSize: const Size(
                           double.infinity, 0), // Set minimum size to fill width
                     ),
-                    child: const Text('Button 2'),
+                    child: const Text(''),
                   ),
                 ),
               ],
