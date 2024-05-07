@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'register.dart'; // Import the register.dart file
+import 'package:shopsense_app/register.dart'; // Import the register.dart file
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -9,10 +9,30 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
+
+    // Initialize animation controller
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2), // Adjust duration as needed
+    );
+
+    // Define animation
+    _animation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_animationController);
+
+    // Start the animation
+    _animationController.forward();
+
     // Delay navigation to register.dart for 5 seconds
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
@@ -23,22 +43,38 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Your logo or image goes here
-            Image.asset(
-              'images/logo.png', // Replace 'logo.png' with your logo file
-              width: 250,
-              height: 250,
-            ),
-            const SizedBox(height: 30),
-            const CircularProgressIndicator(), // Loading indicator
-          ],
+        child: FadeTransition(
+          opacity: _animation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Animated logo or image goes here
+              AnimatedContainer(
+                duration:
+                    const Duration(seconds: 2), // Adjust duration as needed
+                curve: Curves.easeInOut,
+                child: Image.asset(
+                  'images/logo.png', // Replace 'logo.png' with your logo file
+                  width: 250,
+                  height: 250,
+                ),
+              ),
+              const SizedBox(height: 30),
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+              ), // Loading indicator
+            ],
+          ),
         ),
       ),
     );
