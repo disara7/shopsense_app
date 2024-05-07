@@ -59,6 +59,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _speech.stop();
   }
 
+  void speakAnotherSentence() async {
+    // Speak another sentence after the listening part
+    await Future.delayed(
+        Duration(seconds: 1)); // Delay for 1 second before speaking
+    speakSentence("Thank you for providing your name.");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(20.0),
-                      backgroundColor: Colors.pink,
+                      backgroundColor: Colors.pink[100],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),

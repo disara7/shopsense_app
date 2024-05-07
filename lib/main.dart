@@ -14,8 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.purple, // Define the primary color
+        hintColor: Colors.grey, // Define the accent color
+
+        // You can define other properties of the theme here
       ),
       home: const RegisterScreen(), // Use SplashScreen as the home
     );
