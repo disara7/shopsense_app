@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class Shop extends StatelessWidget {
   const Shop({Key? key, required this.title}) : super(key: key);
 
   final String title;
+
+  Future<void> speakSentence(String sentence) async {
+    FlutterTts flutterTts = FlutterTts();
+    await flutterTts.setLanguage('en-US');
+    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setVolume(1.0);
+    await flutterTts.setPitch(2.0);
+    await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
+    await flutterTts.speak(sentence);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +29,12 @@ class Shop extends StatelessWidget {
             (buttonHeight * 2), // Maintain aspect ratio
         children: <Widget>[
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              speakSentence('Button 1 pressed');
+            },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
-              backgroundColor: Colors.pink,
+              backgroundColor: Colors.pink[100],
               shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.circular(0), // Adjust the radius as needed
@@ -32,7 +45,9 @@ class Shop extends StatelessWidget {
             child: const Text('Button 1'),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              speakSentence('Button 2 pressed');
+            },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
               backgroundColor: Colors.white,
@@ -46,7 +61,9 @@ class Shop extends StatelessWidget {
             child: const Text('Button 2'),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              speakSentence('Button 3 pressed');
+            },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
               backgroundColor: Colors.white,
@@ -61,10 +78,12 @@ class Shop extends StatelessWidget {
             child: const Text('Button 3'),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              speakSentence('Button 4 pressed');
+            },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(20.0),
-              backgroundColor: Colors.pink,
+              backgroundColor: Colors.pink[100],
               shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.circular(0), // Adjust the radius as needed

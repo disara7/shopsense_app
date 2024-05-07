@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:shopsense_app/shop.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void initState() {
     super.initState();
     speakSentence(
-        'Welcome to shopsense! My name is shopzee and I am here to assist you choose the clothing items you desire. To get started, let\'s first get to know each other. What\'s your name? Once you say your name, to continue, please tap on the top half of your screen, or if you want to redo, please tap on the bottom half of the screen.');
+        'Welcome to shopsense! My name is shopzee and I am here to assist you choose the clothing items you desire. To get started, let\'s first get to know each other. What\'s your name? Once you say your name, to continue to the store, please tap on the top half of your screen, or if you want to redo, please tap on the bottom half of the screen.');
   }
 
   Future<void> speakSentence(String sentence) async {
@@ -72,7 +73,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       speakSentence(
-                          'Hello, Jane. Could you please tell me your phone number to set up the profile? Once you finish saying your phone number, please tap on the top half of the screen to continue, or if you want to redo, please tap on the bottom half of the screen.');
+                          'Hellooo Jane! congratulations on successfully setting up your shopsense profile, and welcome to the shopsense store! Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about purchasing and all. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Shop(
+                                  title: '',
+                                )),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(20.0),

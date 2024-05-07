@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopsense_app/register.dart';
+import 'package:shopsense_app/shop.dart';
 // Import the splash_screen.dart file
 
 void main() {
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
 
         // You can define other properties of the theme here
       ),
-      home: const RegisterScreen(), // Use SplashScreen as the home
+      home: const Shop(
+        title: '',
+      ), // Use SplashScreen as the home
     );
   }
 }
