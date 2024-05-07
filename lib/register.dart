@@ -23,7 +23,8 @@ class _RegisterScreenState extends State<RegisterScreen>
   void initState() {
     super.initState();
     speakSentence(
-        'Helooo Jane! congratulations on successfully setting up your shopsense profile, and welcome to the shopsense store! Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about purchasing and all. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
+        'Welcome to shopsense. my name is shopzee and im here to help you find all clothing items you desire. to get started, lets get to know each other first. whats your name? After saying your name, please tap on the top half of the screen to finish setting up your profile or tap on the bottom half of the screen to do over.');
+
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 10), // Adjust the duration as needed
@@ -31,11 +32,11 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   Future<void> speakSentence(String sentence) async {
-    await flutterTts.setLanguage('en-US');
+    await flutterTts.setLanguage('locale.UK');
     await flutterTts.setSpeechRate(1.0);
     await flutterTts.setVolume(1.0);
     await flutterTts.setPitch(2.0);
-    await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
+    await flutterTts.setVoice({"name": "Karen", "locale": "en-UK"});
     await flutterTts.speak(sentence);
   }
 
