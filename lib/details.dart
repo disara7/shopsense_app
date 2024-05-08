@@ -19,8 +19,8 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 6), () {
-      // speakSentence(
-      //     'Great! Heres what i found for you that match what you just described! The first dress is an orange floral knee length dress with a frilly skirt. If you want more details about this tap on the top right corner of the screen. or if you want to hear about the next dress, tap on the bottom right corner of the screen.');
+      speakSentence(
+          'Excellent choice! To purchase this item, please confirm by tapping on the top right corner of the screen.');
     });
 
     // Initialize animation controller
@@ -76,8 +76,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
               ElevatedButton(
                 onPressed: () {
-                  speakSentence(
-                      'Excellent choice! Let me describe this dress for you. Imagine slipping into a dress thats a tactile celebration of summer: soft fabric adorned with playful frills and a lively floral pattern, all in a radiant orange hue. Its like wearing sunshine itself, with every touch revealing its vibrant warmth. This delightful creation hugs your curves gently, with frills and ruffles adding a delightful sensation to each movement. The intricate floral pattern, though unseen, can be felt like delicate petals against your skin. With this dress, youll embody the essence of summer, exuding energy and vitality wherever you go. Whether for a leisurely stroll or a gathering with friends, youll feel both stylish and comfortable, inviting admiration with every step.');
+                  speakSentence('');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
