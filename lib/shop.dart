@@ -19,7 +19,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 10), () {
       speakSentence(
           'Great! Here\'s what I found for you that matches what you just described! The first dress is an orange floral knee-length dress with a frilly skirt. If you want more details about this, tap on the top right corner of the screen. Or, if you want to hear about the next dress, tap on the bottom right corner of the screen.');
     });
@@ -37,9 +37,9 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   Future<void> speakSentence(String sentence) async {
     FlutterTts flutterTts = FlutterTts();
     await flutterTts.setLanguage('locale.UK');
-    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setSpeechRate(0.5);
     await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(2.0);
+    await flutterTts.setPitch(1.0);
     await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
     await flutterTts.speak(sentence);
   }
@@ -152,7 +152,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
               child: RotationTransition(
                 turns: _animation,
                 child: Image.asset(
-                  'images/shopz.png',
+                  'assets/images/shopz.png',
                   width: MediaQuery.of(context).size.width / 3,
                   // Adjust the width as needed
                 ),

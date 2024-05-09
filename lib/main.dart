@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 
         // You can define other properties of the theme here
       ),
-      home: Details(title: ''),
+      home: SplashScreen(),
       // Use SplashScreen as the home
     );
   }

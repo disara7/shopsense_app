@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const Duration(seconds: 2), // Adjust duration as needed
                 curve: Curves.easeInOut,
                 child: Image.asset(
-                  'images/logo.png', // Replace 'logo.png' with your logo file
+                  'assets/images/logo.png', // Replace 'logo.png' with your logo file
                   width: 250,
                   height: 250,
                 ),

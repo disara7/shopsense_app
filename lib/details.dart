@@ -37,10 +37,10 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
 
   Future<void> speakSentence(String sentence) async {
     FlutterTts flutterTts = FlutterTts();
-    await flutterTts.setLanguage('en-UK');
-    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setLanguage('locale.UK');
+    await flutterTts.setSpeechRate(0.5);
     await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(2.0);
+    await flutterTts.setPitch(1.0);
     await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
     await flutterTts.speak(sentence);
   }
@@ -136,7 +136,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'Sure, Lets continur shopping. Tell me what you wish to shop next.');
+                      'Sure, Lets continue shopping. Tell me what you wish to shop next.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -180,7 +180,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               child: RotationTransition(
                 turns: _animation,
                 child: Image.asset(
-                  'images/shopz.png',
+                  'assets/images/shopz.png',
                   width: MediaQuery.of(context).size.width / 3,
                   // Adjust the width as needed
                 ),

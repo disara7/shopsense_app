@@ -27,15 +27,15 @@ class _GuideState extends State<Guide> with SingleTickerProviderStateMixin {
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10), // Adjust the duration as needed
+      duration: const Duration(seconds: 3), // Adjust the duration as needed
     )..repeat();
   }
 
   Future<void> speakSentence(String sentence) async {
     await flutterTts.setLanguage('locale.UK');
-    await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setSpeechRate(0.5);
     await flutterTts.setVolume(1.0);
-    await flutterTts.setPitch(2.0);
+    await flutterTts.setPitch(1.0);
     await flutterTts.setVoice({"name": "Karen", "locale": "en-UK"});
     await flutterTts.speak(sentence);
   }
@@ -138,7 +138,7 @@ class _GuideState extends State<Guide> with SingleTickerProviderStateMixin {
             child: Align(
               alignment: Alignment.center,
               child: Image.asset(
-                'images/shopz.png',
+                'assets/images/shopz.png',
                 width: MediaQuery.of(context).size.width / 3,
               ),
             ),
