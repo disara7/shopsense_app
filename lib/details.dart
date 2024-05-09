@@ -58,6 +58,8 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
         if (cardno.length >= 12) {
           // Close the keypad when 12 keys are tapped
           brailleKeypadEnabled = false;
+          speakSentence(
+              "You card number is added to your profile successfully. Please tell me the address you wish to get this item delivered. After saying the address, tap on the bottom left ocrner of the screen to confirm."); // Add the sentence to be spoken once the keypad disappears
         }
         speakSentence(key);
       }
@@ -115,7 +117,8 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
               ElevatedButton(
                 onPressed: () {
-                  speakSentence('Sure, you can re-describe what you wish for.');
+                  speakSentence(
+                      'Your address has been added and the order is confirmed. This item will be delivered to you in a week. Please tap on the bottom right corner of the screen to continur shopping ot the top left corner of the screen to go back to the previous screen.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -133,7 +136,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'The next dress i found for you is a comfortable casual dress with a smoked bust to make you look smart.');
+                      'Sure, Lets continur shopping. Tell me what you wish to shop next.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
