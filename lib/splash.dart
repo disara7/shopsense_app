@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shopsense_app/guide.dart';
 import 'package:shopsense_app/register.dart'; // Import the register.dart file
 
 class SplashScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const RegisterScreen()),
+        MaterialPageRoute(builder: (context) => const Guide()),
       );
     });
   }
