@@ -53,10 +53,13 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
 
   void onTapBrailleKey(String key) {
     setState(() {
-      cardno.add(key);
-      if (cardno.length >= 12) {
-        // Close the keypad when 12 keys are tapped
-        brailleKeypadEnabled = false;
+      if (cardno.length < 12) {
+        cardno.add(key);
+        if (cardno.length >= 12) {
+          // Close the keypad when 12 keys are tapped
+          brailleKeypadEnabled = false;
+        }
+        speakSentence(key);
       }
     });
   }
@@ -64,16 +67,16 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // Calculate the height of each button to fill the screen
-    final double buttonHeight = MediaQuery.of(context).size.height / 2;
+    final double buttonHeight = MediaQuery.of(context).size.height / 5;
 
     return Scaffold(
       body: Stack(
         children: [
           GridView.count(
             shrinkWrap: true, // Ensure the GridView shrinks to fit its content
-            crossAxisCount: 2, // Number of buttons in a row
+            crossAxisCount: 2, // Number of columns
             childAspectRatio: MediaQuery.of(context).size.width /
-                (buttonHeight * 2), // Maintain aspect ratio
+                (buttonHeight * 5), // Maintain aspect ratio
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
@@ -105,8 +108,8 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                     borderRadius:
                         BorderRadius.circular(0), // Adjust the radius as needed
                   ),
-                  minimumSize:
-                      Size(double.infinity, buttonHeight), // Set button color
+                  minimumSize: Size(
+                      double.infinity, buttonHeight * 5), // Set button size
                 ),
                 child: const Text(''),
               ),
@@ -153,14 +156,15 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    for (int i = 1; i <= 6; i++)
+                    for (int i = 0; i < 5; i++)
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          for (int j = 1; j <= 2; j++)
+                          for (int j = 0; j < 2; j++)
                             BrailleKey(
                               onTap: onTapBrailleKey,
-                              value: (i - 1) * 2 + j,
+                              value: i * 2 + j,
+                              size: buttonHeight,
                             ),
                         ],
                       ),
@@ -188,9 +192,11 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
 
 class BrailleKey extends StatelessWidget {
   final int value;
+  final double size;
   final void Function(String) onTap;
 
-  const BrailleKey({Key? key, required this.value, required this.onTap})
+  const BrailleKey(
+      {Key? key, required this.value, required this.onTap, required this.size})
       : super(key: key);
 
   @override
@@ -198,15 +204,15 @@ class BrailleKey extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(value.toString()),
       child: Container(
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.all(2),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 50),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(7),
           color: Colors.white,
         ),
         child: Text(
           value.toString(),
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: size / 4, fontWeight: FontWeight.bold),
         ),
       ),
     );
