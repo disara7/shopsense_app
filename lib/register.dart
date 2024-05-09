@@ -14,7 +14,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen>
     with SingleTickerProviderStateMixin {
   FlutterTts flutterTts = FlutterTts();
-  stt.SpeechToText _speech = stt.SpeechToText();
+  final stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
   late Timer _timer;
   late AnimationController _controller;
@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10), // Adjust the duration as needed
+      duration: const Duration(seconds: 10), // Adjust the duration as needed
     )..repeat();
   }
 
@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                   child: ElevatedButton(
                     onPressed: () {
                       speakSentence(
-                          'Helooo Jane! congratulations on successfully setting up your shopsense profile, and welcome to the shopsense store! Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about purchasing and all. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
+                          'Helooo Jane! congratulations on successfully setting up your shopsense profile, and welcome to the shopsense store! Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about the item and purchasing. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
                       Navigator.push(
                         context,
                         MaterialPageRoute(

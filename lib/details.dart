@@ -14,19 +14,21 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  bool brailleKeypadEnabled = false;
+  List<String> cardno = [];
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 6), () {
-      speakSentence(
-          'Excellent choice! To purchase this item, please confirm by tapping on the top right corner of the screen.');
+    Future.delayed(const Duration(seconds: 6), () {
+      // speakSentence(
+      //     'To purchase this item, please confirm by tapping on the top right corner of the screen.');
     });
 
     // Initialize animation controller
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 40), // Adjust the duration as needed
+      duration: const Duration(seconds: 40), // Adjust the duration as needed
     )..repeat();
 
     // Initialize rotation animation
@@ -35,12 +37,28 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
 
   Future<void> speakSentence(String sentence) async {
     FlutterTts flutterTts = FlutterTts();
-    await flutterTts.setLanguage('en-US');
+    await flutterTts.setLanguage('en-UK');
     await flutterTts.setSpeechRate(1.0);
     await flutterTts.setVolume(1.0);
     await flutterTts.setPitch(2.0);
     await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
     await flutterTts.speak(sentence);
+  }
+
+  void toggleBrailleKeypad() {
+    setState(() {
+      brailleKeypadEnabled = !brailleKeypadEnabled;
+    });
+  }
+
+  void onTapBrailleKey(String key) {
+    setState(() {
+      cardno.add(key);
+      if (cardno.length >= 12) {
+        // Close the keypad when 12 keys are tapped
+        brailleKeypadEnabled = false;
+      }
+    });
   }
 
   @override
@@ -76,7 +94,9 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
               ElevatedButton(
                 onPressed: () {
-                  speakSentence('');
+                  speakSentence(
+                      'The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process.');
+                  toggleBrailleKeypad();
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -126,6 +146,28 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
+          if (brailleKeypadEnabled)
+            Center(
+              child: Container(
+                color: Colors.black54,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (int i = 1; i <= 6; i++)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int j = 1; j <= 2; j++)
+                            BrailleKey(
+                              onTap: onTapBrailleKey,
+                              value: (i - 1) * 2 + j,
+                            ),
+                        ],
+                      ),
+                  ],
+                ),
+              ),
+            ),
           Positioned.fill(
             child: Center(
               child: RotationTransition(
@@ -139,6 +181,33 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BrailleKey extends StatelessWidget {
+  final int value;
+  final void Function(String) onTap;
+
+  const BrailleKey({Key? key, required this.value, required this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onTap(value.toString()),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+        ),
+        child: Text(
+          value.toString(),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

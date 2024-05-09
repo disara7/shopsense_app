@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'details.dart'; // Import the details.dart file
+import 'package:shopsense_app/details.dart'; // Import the details.dart file
 
 class Shop extends StatefulWidget {
   const Shop({Key? key, required this.title}) : super(key: key);
@@ -19,7 +19,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 6), () {
       speakSentence(
           'Great! Here\'s what I found for you that matches what you just described! The first dress is an orange floral knee-length dress with a frilly skirt. If you want more details about this, tap on the top right corner of the screen. Or, if you want to hear about the next dress, tap on the bottom right corner of the screen.');
     });
@@ -27,7 +27,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
     // Initialize animation controller
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 40), // Adjust the duration as needed
+      duration: const Duration(seconds: 40), // Adjust the duration as needed
     )..repeat();
 
     // Initialize rotation animation
@@ -36,7 +36,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
 
   Future<void> speakSentence(String sentence) async {
     FlutterTts flutterTts = FlutterTts();
-    await flutterTts.setLanguage('en-US');
+    await flutterTts.setLanguage('locale.UK');
     await flutterTts.setSpeechRate(1.0);
     await flutterTts.setVolume(1.0);
     await flutterTts.setPitch(2.0);
@@ -73,12 +73,19 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
                   minimumSize: Size(double.infinity,
                       buttonHeight), // Set minimum size to fill height
                 ),
-                child: const Text(''),
+                child: const Text('shop'),
               ),
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
                       'Excellent choice! Let me describe this dress for you. Imagine slipping into a dress that\'s a tactile celebration of summer: soft fabric adorned with playful frills and a lively floral pattern, all in a radiant orange hue. It\'s like wearing sunshine itself, with every touch revealing its vibrant warmth. This delightful creation hugs your curves gently, with frills and ruffles adding a delightful sensation to each movement. The intricate floral pattern, though unseen, can be felt like delicate petals against your skin. With this dress, you\'ll embody the essence of summer, exuding energy and vitality wherever you go. Whether for a leisurely stroll or a gathering with friends, you\'ll feel both stylish and comfortable, inviting admiration with every step.');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Details(
+                              title: '',
+                            )),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -111,14 +118,14 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Details(
-                        title: 'Details Screen',
-                      ),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const Details(
+                  //       title: 'Details Screen',
+                  //     ),
+                  //   ),
+                  // );
                 },
                 child: ElevatedButton(
                   onPressed: () {
