@@ -15,12 +15,16 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool brailleKeypadEnabled = false;
+  bool _showDress02 = true;
   List<String> cardno = [];
 
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 6), () {
+      setState(() {
+        _showDress02 = false; // Set _showDress02 to false to hide the image
+      });
       // speakSentence(
       //     'To purchase this item, please confirm by tapping on the top right corner of the screen.');
     });
@@ -53,6 +57,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
 
   void onTapBrailleKey(String key) {
     setState(() {
+      _showDress02 = false;
       if (cardno.length < 12) {
         cardno.add(key);
         speakSentence(key);
@@ -100,8 +105,13 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
               ElevatedButton(
                 onPressed: () {
+                  setState(() {
+                    _showDress02 =
+                        false; // Set _showDress02 to false to hide the image
+                  });
                   speakSentence(
                       'Awesome! Lets first add your card details. The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process. The keypad has numbers 0 to 9 and are plased in the zig zag pattern. the numbers will be narrated to you as you press. You may start typing now.');
+
                   toggleBrailleKeypad();
                 },
                 style: ElevatedButton.styleFrom(
@@ -176,24 +186,25 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-          Positioned.fill(
-            child: Center(
-              child: Transform.scale(
-                scale: 0.7, // Adjust the scale factor as needed
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 205, 205, 205),
-                      width: 7.0, // Adjust the border width as needed
+          if (_showDress02)
+            Positioned.fill(
+              child: Center(
+                child: Transform.scale(
+                  scale: 0.7, // Adjust the scale factor as needed
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 205, 205, 205),
+                        width: 7.0, // Adjust the border width as needed
+                      ),
                     ),
-                  ),
-                  child: Image.asset(
-                    'assets/images/dress02.jpeg',
+                    child: Image.asset(
+                      'assets/images/dress02.jpeg',
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
           Positioned.fill(
             child: Center(
               child: RotationTransition(
