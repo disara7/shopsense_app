@@ -19,7 +19,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 30), () {
       speakSentence(
           'Great! Here\'s what I found for you that matches what you just described! The first dress is an orange floral knee-length dress with a frilly skirt. If you want more details about this, tap on the top right corner of the screen. Or, if you want to hear about the next dress, tap on the bottom right corner of the screen.');
     });
@@ -146,6 +146,24 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
                 ),
               ),
             ],
+          ),
+          Positioned.fill(
+            child: Center(
+              child: Transform.scale(
+                scale: 0.7, // Adjust the scale factor as needed
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 205, 205, 205),
+                      width: 7.0, // Adjust the border width as needed
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/dress01.jpeg',
+                  ),
+                ),
+              ),
+            ),
           ),
           Positioned.fill(
             child: Center(

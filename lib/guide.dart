@@ -110,7 +110,7 @@ class _GuideState extends State<Guide> with SingleTickerProviderStateMixin {
                   child: ElevatedButton(
                     onPressed: () {
                       speakSentence(
-                          "Here is a complete guide on how to use ShopSense.");
+                          "Here is a complete guide on how to use ShopSense. The screen will be divided into ");
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(20.0),
