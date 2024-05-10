@@ -68,6 +68,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
             "You card number is added to your profile successfully. Please tell me the address you wish to get this item delivered. After saying the address, tap on the bottom left corner of the screen to confirm."); // Add the sentence to be spoken once the keypad disappears
 
         brailleKeypadEnabled = false;
+        _showDress02 = true;
       }
     });
   }
