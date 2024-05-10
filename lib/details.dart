@@ -177,6 +177,24 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
             ),
           Positioned.fill(
             child: Center(
+              child: Transform.scale(
+                scale: 0.7, // Adjust the scale factor as needed
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 205, 205, 205),
+                      width: 7.0, // Adjust the border width as needed
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/dress02.jpeg',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Center(
               child: RotationTransition(
                 turns: _animation,
                 child: Image.asset(
