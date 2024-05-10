@@ -15,6 +15,8 @@ class Shop extends StatefulWidget {
 class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  bool _showImage = false;
+  bool _showDress02 = false;
 
   @override
   void initState() {
@@ -32,6 +34,13 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
 
     // Initialize rotation animation
     _animation = Tween(begin: 0.0, end: 2 * 3.1415).animate(_controller);
+
+    // Delay showing the image
+    Future.delayed(Duration(seconds: 30), () {
+      setState(() {
+        _showImage = true;
+      });
+    });
   }
 
   Future<void> speakSentence(String sentence) async {
@@ -129,6 +138,10 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
                 },
                 child: ElevatedButton(
                   onPressed: () {
+                    setState(() {
+                      _showDress02 = true;
+                      _showImage = false;
+                    });
                     speakSentence(
                         'The next dress I found for you is a comfortable casual dress with a smoked bust to make you look smart.');
                   },
@@ -147,24 +160,44 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
-          Positioned.fill(
-            child: Center(
-              child: Transform.scale(
-                scale: 0.7, // Adjust the scale factor as needed
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 205, 205, 205),
-                      width: 7.0, // Adjust the border width as needed
+          if (_showImage)
+            Positioned.fill(
+              child: Center(
+                child: Transform.scale(
+                  scale: 0.7, // Adjust the scale factor as needed
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 205, 205, 205),
+                        width: 7.0, // Adjust the border width as needed
+                      ),
                     ),
-                  ),
-                  child: Image.asset(
-                    'assets/images/dress01.jpeg',
+                    child: Image.asset(
+                      'assets/images/dress01.jpeg',
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          if (_showDress02)
+            Positioned.fill(
+              child: Center(
+                child: Transform.scale(
+                  scale: 0.7, // Adjust the scale factor as needed
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 205, 205, 205),
+                        width: 7.0, // Adjust the border width as needed
+                      ),
+                    ),
+                    child: Image.asset(
+                      'assets/images/dress02.jpeg',
+                    ),
+                  ),
+                ),
+              ),
+            ),
           Positioned.fill(
             child: Center(
               child: RotationTransition(
