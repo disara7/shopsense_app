@@ -87,7 +87,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'Excellent choice! Let me describe this dress for you. Imagine slipping into a dress that\'s a tactile celebration of summer: soft fabric adorned with playful frills and a lively floral pattern, all in a radiant orange hue. It\'s like wearing sunshine itself, with every touch revealing its vibrant warmth. This delightful creation hugs your curves gently, with frills and ruffles adding a delightful sensation to each movement. The intricate floral pattern, though unseen, can be felt like delicate petals against your skin. With this dress, you\'ll embody the essence of summer, exuding energy and vitality wherever you go. Whether for a leisurely stroll or a gathering with friends, you\'ll feel both stylish and comfortable, inviting admiration with every step.');
+                      'Excellent choice! Let me describe this dress for you. Its got a vibrant checkered pattern that is black and white. The price is 2500 rupees. This can be worn for casual occassions. the brand is insomnia and 5 items are available in stock. It can be washed in the washing machine. If you wish to purchase this dress please tap on the top right corner of the screen.');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

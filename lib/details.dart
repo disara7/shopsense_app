@@ -55,13 +55,14 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
     setState(() {
       if (cardno.length < 12) {
         cardno.add(key);
-        if (cardno.length >= 12) {
-          // Close the keypad when 12 keys are tapped
-          brailleKeypadEnabled = false;
-          speakSentence(
-              "You card number is added to your profile successfully. Please tell me the address you wish to get this item delivered. After saying the address, tap on the bottom left ocrner of the screen to confirm."); // Add the sentence to be spoken once the keypad disappears
-        }
         speakSentence(key);
+      }
+      if (cardno.length >= 12) {
+        // Close the keypad when 12 keys are tapped
+        speakSentence(
+            "You card number is added to your profile successfully. Please tell me the address you wish to get this item delivered. After saying the address, tap on the bottom left corner of the screen to confirm."); // Add the sentence to be spoken once the keypad disappears
+
+        brailleKeypadEnabled = false;
       }
     });
   }
@@ -83,7 +84,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'Sure, let me repeat what i just said. Please describe what kind of a clothing item you are looking for, today. After you describe, I will come up with a few clothes that match your description and if the item i describe matches your desire, please tap on the top right corner of the screen to get more details about the item. Or, if you want to hear about the other options you have tap on the bottom right corner of the screen. if you want to go back to the previous item, tap on the bottom left corner of the screen, AND if you want me to repeat what i just said, you can tap on the top left corner of the screen.');
+                      'Sure, the order for one small sized black and white checkered dress is successfully cancelled and any paid amount is refunded to your account.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -100,7 +101,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process.');
+                      'Awesome! Lets first add your card details. The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process. The keypad has numbers 0 to 9 and are plased in the zig zag pattern. the numbers will be narrated to you as you press. You may start typing now.');
                   toggleBrailleKeypad();
                 },
                 style: ElevatedButton.styleFrom(
@@ -118,7 +119,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'Your address has been added and the order is confirmed. This item will be delivered to you in a week. Please tap on the bottom right corner of the screen to continur shopping ot the top left corner of the screen to go back to the previous screen.');
+                      'Your address which is number 74A, lewelle road, kandy has been added and the order is confirmed. This item will be delivered to you in a week. Please tap on the bottom right corner of the screen to continur shopping ot the top left corner of the screen to cancel the order.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
