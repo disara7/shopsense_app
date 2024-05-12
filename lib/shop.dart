@@ -82,7 +82,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
                   minimumSize: Size(double.infinity,
                       buttonHeight), // Set minimum size to fill height
                 ),
-                child: const Text('shop'),
+                child: const Text(''),
               ),
               ElevatedButton(
                 onPressed: () {

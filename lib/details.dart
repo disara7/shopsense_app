@@ -103,7 +103,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                   minimumSize: Size(double.infinity,
                       buttonHeight), // Set minimum size to fill height
                 ),
-                child: const Text('deets'),
+                child: const Text(''),
               ),
               ElevatedButton(
                 onPressed: () {
