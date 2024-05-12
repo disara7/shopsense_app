@@ -20,16 +20,16 @@ class _CloseState extends State<Close> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
-  // void initState() {
-  //   super.initState();
-  //   speakSentence(
-  //       'To continue, lets first get to know each other. whats your name? After saying your name, please tap on the top half of the screen to go shopping with me or tap on the bottom half of the screen to do over.');
+  void initState() {
+    super.initState();
+    //   speakSentence(
+    //       'To continue, lets first get to know each other. whats your name? After saying your name, please tap on the top half of the screen to go shopping with me or tap on the bottom half of the screen to do over.');
 
-  //   _controller = AnimationController(
-  //     vsync: this,
-  //     duration: const Duration(seconds: 3), // Adjust the duration as needed
-  //   )..repeat();
-  // }
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3), // Adjust the duration as needed
+    )..repeat();
+  }
 
   Future<void> speakSentence(String sentence) async {
     await flutterTts.setLanguage('locale.UK');

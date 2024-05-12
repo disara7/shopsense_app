@@ -22,10 +22,13 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 10), () {
-      setState(() {
-        _showDress02 = false; // Set _showDress02 to false to hide the image
-      });
+    setState(() {
+      _showDress02 = false; // Set _showDress02 to false to hide the image
+
+      // Future.delayed(const Duration(seconds: 50), () {
+      //   setState(() {
+      //     _showDress02 = false; // Set _showDress02 to false to hide the image
+      //   });
       // speakSentence(
       //     'To purchase this item, please confirm by tapping on the top right corner of the screen.');
     });

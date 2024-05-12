@@ -21,7 +21,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 30), () {
+    Future.delayed(const Duration(seconds: 70), () {
       speakSentence(
           'Great! Here\'s what I found for you that matches what you just described! The first dress is an orange floral knee-length dress with a frilly skirt. If you want more details about this, tap on the top right corner of the screen. Or, if you want to hear about the next dress, tap on the bottom right corner of the screen.');
     });
@@ -36,7 +36,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
     _animation = Tween(begin: 0.0, end: 2 * 3.1415).animate(_controller);
 
     // Delay showing the image
-    Future.delayed(Duration(seconds: 50), () {
+    Future.delayed(Duration(seconds: 70), () {
       setState(() {
         _showImage = true;
       });
