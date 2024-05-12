@@ -15,16 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'ShopSense',
       theme: ThemeData(
         primarySwatch: Colors.purple, // Define the primary color
         hintColor: Colors.grey, // Define the accent color
 
         // You can define other properties of the theme here
       ),
-      home: Shop(
-        title: '',
-      ),
+      home: SplashScreen(),
       // Use SplashScreen as the home
     );
   }

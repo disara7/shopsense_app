@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:shopsense_app/close.dart';
 
 class Details extends StatefulWidget {
   const Details({Key? key, required this.title}) : super(key: key);
@@ -21,7 +22,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         _showDress02 = false; // Set _showDress02 to false to hide the image
       });
@@ -111,7 +112,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                         false; // Set _showDress02 to false to hide the image
                   });
                   speakSentence(
-                      'Awesome! Lets first add your card details. The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process. The keypad has numbers 0 to 9 and are plased in the zig zag pattern. the numbers will be narrated to you as you press. You may start typing now.');
+                      'Awesome! Lets first add your card details. The braille keypad is now enabled for you to type in your Visa or Mastercard number to continue the checkout process.The keypad has numbers 0 to 9 and are plased in the zig zag pattern. the numbers will be narrated to you as you press. You may start typing now.');
 
                   toggleBrailleKeypad();
                 },
@@ -130,7 +131,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ElevatedButton(
                 onPressed: () {
                   speakSentence(
-                      'Your address which is number 74A, lewelle road, kandy has been added and the order is confirmed. This item will be delivered to you in a week. Please tap on the bottom right corner of the screen to continur shopping ot the top left corner of the screen to cancel the order.');
+                      'Your address which is number 74A, lewelle road, kandy has been added and the order is confirmed. This item will be delivered to you in a week. Please tap on the bottom right corner of the screen to conclude the process or the top left corner of the screen to cancel the order.');
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),
@@ -149,7 +150,9 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
                 onPressed: () {
                   _showDress02 = false;
                   speakSentence(
-                      'Sure, Lets continue shopping. Tell me what you wish to shop next.');
+                      'If you want to close the app, tap on the bottom half of the screen, or if you wish to continue shoppping tap on the bottom half of the screen.');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Close()));
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(20.0),

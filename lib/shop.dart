@@ -36,7 +36,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
     _animation = Tween(begin: 0.0, end: 2 * 3.1415).animate(_controller);
 
     // Delay showing the image
-    Future.delayed(Duration(seconds: 30), () {
+    Future.delayed(Duration(seconds: 50), () {
       setState(() {
         _showImage = true;
       });
