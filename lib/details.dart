@@ -147,6 +147,7 @@ class _DetailsState extends State<Details> with SingleTickerProviderStateMixin {
               ),
               ElevatedButton(
                 onPressed: () {
+                  _showDress02 = false;
                   speakSentence(
                       'Sure, Lets continue shopping. Tell me what you wish to shop next.');
                 },

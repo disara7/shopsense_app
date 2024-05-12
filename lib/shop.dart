@@ -143,7 +143,7 @@ class _ShopState extends State<Shop> with SingleTickerProviderStateMixin {
                       _showImage = false;
                     });
                     speakSentence(
-                        'The next dress I found for you is a comfortable casual dress with a smoked bust to make you look smart.');
+                        'The next dress I found for you is a comfortable casual dress with a smoked bust to make you look smart. Tap on the top right corner of the screen to get more details or bottom right corner of the screen to see the next dress i found for you.');
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(20.0),
